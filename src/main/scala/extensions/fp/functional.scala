@@ -3,7 +3,7 @@ package extensions.fp
 import functional.Animal
 import functional.Giraffe
 import functional.Cowfish
-import extensions.fp.{behavior3 ⇒ b3}
+import extensions.fp.{move ⇒ b3}
 
 
 /**
