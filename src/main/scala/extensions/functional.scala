@@ -3,8 +3,8 @@ package extensions
 import functional.Giraffe
 import functional.Cowfish
 import functional.Animal
-import functional.{ eat ⇒ b1 }
-import functional.{ sleep ⇒ b2 }
+import functional.{ eat ⇒ eat_prev }
+import functional.{ sleep ⇒ sleep_prev }
 
 package object fp {
   /**
@@ -12,12 +12,12 @@ package object fp {
    */
   def eat(animal: Animal): Unit = animal match {
     case _: Bear ⇒ println("aggressively")
-    case _       ⇒ b1(animal)
+    case _       ⇒ eat_prev(animal)
   }
 
   def sleep(animal: Animal): Unit = animal match {
     case _: Bear ⇒ println("forever")
-    case _       ⇒ b2(animal)
+    case _       ⇒ sleep_prev(animal)
   }
 
   /**
