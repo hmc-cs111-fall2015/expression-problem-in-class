@@ -3,7 +3,10 @@ package extensions.fp
 package object behavior {
   import fp.{ Animal, Giraffe, Kangaroo }
 
-  // add extension here
+  def move(animal: Animal) = animal match {
+    case Giraffe()  ⇒ println("skip")
+    case Kangaroo() ⇒ println("hop")
+  }
 }
 
 object BehaviorProgram extends App {
