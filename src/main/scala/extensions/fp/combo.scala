@@ -4,7 +4,10 @@ package object combo {
   import fp.Animal
   import data.Platypus
 
-  // add extension here
+  def move(animal: Animal) = animal match {
+    case Platypus() ⇒ println("waddle")
+    case _          ⇒ behavior.move(animal)
+  }
 }
 
 object ComboProgram extends App {
