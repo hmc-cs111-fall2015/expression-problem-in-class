@@ -1,20 +1,24 @@
 package extensions.fp
 
-import functional.Animal
-import functional.Giraffe
-import functional.Cowfish
-import extensions.fp.{move ⇒ move_prev}
+package object combo {
+  import fp.Animal
+  import data.Platypus
+
+  def move(animal: Animal) = animal match {
+    case Platypus() ⇒ println("waddle")
+    case _          ⇒ behavior.move(animal)
+  }
+}
 
 object ComboProgram extends App {
-  def move(a: Animal): Unit = a match {
-    case _: Bear ⇒ println("angrily")
-    case _  ⇒ move_prev(a)
-  }
+  import fp.{ Animal, Giraffe, Kangaroo }
+  import data.{ Platypus, eat, speak }
+  import combo.move
 
-  val animals: Seq[Animal] = List(Giraffe(), Cowfish(), Bear())
-  animals foreach {a ⇒
+  val animals: Seq[Animal] = List(Giraffe(), Kangaroo(), Platypus())
+  animals foreach { a ⇒
     eat(a)
-    sleep(a)
+    speak(a)
     move(a)
-  } 
+  }
 }
