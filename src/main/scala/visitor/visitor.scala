@@ -1,4 +1,4 @@
-package oophack
+package visitor
 
 /*******************************************************************************
  * The dreaded "Visitor Pattern" is a hack that makes it possible for someone to
@@ -14,22 +14,23 @@ package oophack
  * Any class that wants to be able to extend its set of behaviors 
  * should extend the following trait.
  */
-trait Extensible {
-  def accept(behavior: Behavior) = behavior.performBy(this)
+trait ExtensibleAnimal {
+  def accept(behavior: AnimalVisitor)
 }
 
 /**
  * Any new behavior definition should extend the following trait.
  */
-trait Behavior {
-  def performBy(entity: Extensible): Unit
+trait AnimalVisitor {
+  def visitGiraffe(giraffe: Giraffe): Unit
+  def visitKangaroo(kangaroo: Kangaroo): Unit
 }
 
 /**
  * We have to design from the start with extensibility in mind. So, the 
  * Animal class extends Extensible.
  */
-abstract class Animal extends Extensible {
+abstract class Animal extends ExtensibleAnimal {
   def eat(): Unit
   def speak(): Unit
 }
@@ -41,11 +42,13 @@ abstract class Animal extends Extensible {
 class Giraffe extends Animal {
   override def eat() = println("high up")
   override def speak() = println("low humming sound")
+  override def accept(visitor: AnimalVisitor) = visitor.visitGiraffe(this) 
 }
 
 class Kangaroo extends Animal {
   override def eat() = println("bouncingly")
   override def speak() = println("boing")
+  override def accept(visitor: AnimalVisitor) = visitor.visitKangaroo(this) 
 }
 
 object Program extends App {

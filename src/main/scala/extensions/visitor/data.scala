@@ -1,14 +1,16 @@
-package extensions.oophack
+package extensions.visitor
 
-/**
- * This code is identical to the standard object-oriented way of adding new
- * kinds of data. We don't need to take advantage of the Visitor-Pattern hack.
- */
-import oophack.{Animal, Giraffe, Kangaroo}
+import visitor.{Animal, Giraffe, Kangaroo, AnimalVisitor}
 
-class Platypus extends Animal {
-  override def eat() = println("eat")
+trait PlatypusAnimalVisitor extends AnimalVisitor {
+  def visitPlatypus(platypus: Platypus): Unit
+}
+
+class Platypus extends Animal  {
+  override def eat() = println("snap")
   override def speak() = println("quack")
+  override def accept(visitor: AnimalVisitor) = 
+    visitor.asInstanceOf[PlatypusAnimalVisitor].visitPlatypus(this)  // :(
 }
 
 object DataProgram extends App {
