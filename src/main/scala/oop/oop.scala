@@ -5,7 +5,7 @@ abstract class Animal {
   def speak(): Unit
 }
 
-class Giraffe extends Animal {
+class Giraffe extends Animal { 
   override def eat() = println("high up")
   override def speak() = println("low humming sound")
 }
